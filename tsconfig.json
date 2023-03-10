@@ -3,9 +3,11 @@
     "target": "es5",
     "module": "commonjs",
     "lib": ["ES2015", "DOM"],
-    "strict": true,
+    "strict": false,
+    "esModuleInterop": true,
     "types": ["jest"],
-    "noEmit": true
+    "noEmit": true,
+    "jsx": "react-jsx"
   },
   "include": ["src/**/*"],
   "exclude": ["src/*.test.ts"]
