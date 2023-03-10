@@ -40,6 +40,6 @@ jobs:
 
         with:
           build: pnpm run build
-          start: pnpm run start
+          start: pnpm run start:ci
           wait-on: "http://localhost:3000"
           browser: chrome
