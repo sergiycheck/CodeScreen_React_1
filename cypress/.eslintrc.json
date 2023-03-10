@@ -1,0 +1,14 @@
+{
+  "plugins": ["cypress"],
+  "rules": {
+    "cypress/no-assigning-return-values": "off",
+    "cypress/no-unnecessary-waiting": "off",
+    "cypress/assertion-before-screenshot": "warn",
+    "cypress/no-force": "off",
+    "cypress/no-async-tests": "error",
+    "cypress/no-pause": "error"
+  },
+  "env": {
+    "cypress/globals": true
+  }
+}
