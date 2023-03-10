@@ -1,29 +1,25 @@
-import { Component } from "react";
+import React from "react";
 import "./style.scss";
-import axios from "axios";
 
-const tweetsEndpointURL = "https://app.codescreen.com/api/assessments/tweets";
-const apiToken = "8c5996d5-fb89-46c9-8821-7063cfbc18b1";
-
-export default class Tweets extends Component {
+export default function Tweets() {
   /**
    * Retrieves the most popular hash tag tweeted by the given user.
    * Note that the string returned by this method should not include the hashtag itself.
    * For example, if the most popular hash tag is "#React", this method should return "React".
    * If there are no tweets for the given user, this method should return "N/A".
    */
-  getMostPopularHashTag(tweets) {
+  const getMostPopularHashTag = (tweets) => {
     //TODO Implement
-  }
+  };
 
   /**
    * Retrieves the highest number of tweets that were created on any given day by the given user.
    * A day's time period here is defined from 00:00:00 to 23:59:59
    * If there are no tweets for the given user, this method should return 0.
    */
-  getMostTweetsInOneDay(tweets) {
+  const getMostTweetsInOneDay = (tweets) => {
     //TODO Implement
-  }
+  };
 
   /**
    * Finds the first 6 characters of the ID of the longest tweet for the given user.
@@ -32,9 +28,9 @@ export default class Tweets extends Component {
    * You can assume there will only be one tweet that is the longest.
    * If there are no tweets for the given user, this method should return "N/A".
    */
-  getLongestTweetIdPrefix(tweets) {
+  const getLongestTweetIdPrefix = (tweets) => {
     //TODO Implement
-  }
+  };
 
   /**
    * Retrieves the most number of days between tweets by the given user.
@@ -42,7 +38,9 @@ export default class Tweets extends Component {
    * method should return 12.
    * If there are no tweets for the given user, this method should return 0.
    */
-  getMostDaysBetweenTweets(tweets) {
+  const getMostDaysBetweenTweets = (tweets) => {
     //TODO Implement
-  }
+  };
+
+  return <div>Tweets will be here</div>;
 }

@@ -1,45 +1,66 @@
+.App {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tweets-analysis-service {
+  height: 112px;
+  width: 460px;
+  color: #7d7da7;
+  font-size: 48px;
+  font-weight: bold;
+  letter-spacing: 0;
+  line-height: 56px;
+  padding-top: 132px;
+  padding-bottom: 44px;
+}
+
 .username-input-box {
   height: 48px;
   width: 460px;
   border-radius: 10px;
-  background-color: #FFFFFF;
-  box-shadow: 0 10px 50px 0 rgba(125,125,167,0.1);
-  margin: auto;
+  border: none;
+  background-color: #ffffff;
+  box-shadow: 0 10px 50px 0 rgba(125, 125, 167, 0.1);
+}
+
+.username-input-box:focus {
+  outline: none;
 }
 
 .enter-user-name {
-  height: 32px;
-  width: 151px;
-  color: #87878A;
+  padding: 0.5rem;
+  padding-left: 24px;
+  color: #87878a;
   font-size: 16px;
   letter-spacing: 0;
   line-height: 56px;
-  margin-left: 24px;
   position: relative;
   bottom: 3px;
 }
 
-.submit-button {
-  height: 40px;
-  width: 138px;
-  border-radius: 10px;
-  background-color: #FFBB4B;
-  box-shadow: 0 10px 50px 0 rgba(255,187,75,0.2);
-  margin: auto;
-  margin-top: 40px;
-  cursor: pointer;
+.input-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 40px;
+  align-items: center;
 }
 
-.submit-button-text {
-  height: 24px;
-  width: 58px;
-  color: #FFFFFF;
+.submit-button {
+  width: 138px;
+  border-radius: 10px;
+  border: none;
+  background-color: #ffbb4b;
+  box-shadow: 0 10px 50px 0 rgba(255, 187, 75, 0.2);
+  cursor: pointer;
+
+  color: #ffffff;
   font-size: 14px;
   font-weight: 400;
   letter-spacing: 0.88px;
   line-height: 56px;
   text-align: center;
-  position: relative;
-  bottom: 7px;
-  margin-left: 40px;
 }
