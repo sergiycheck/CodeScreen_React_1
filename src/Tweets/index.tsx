@@ -3,9 +3,6 @@ import "./style.scss";
 import axios from "axios";
 
 const tweetsEndpointURL = "https://app.codescreen.com/api/assessments/tweets";
-
-//Your API token. This is needed to successfully authenticate when calling the tweets endpoint.
-//This needs to be added to the Authorization header (using the Bearer authentication scheme) in the request you send to the tweets endpoint.
 const apiToken = "8c5996d5-fb89-46c9-8821-7063cfbc18b1";
 
 export default class Tweets extends Component {
