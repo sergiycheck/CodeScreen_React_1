@@ -23,10 +23,10 @@ export default function Tweets({ tweets }: { tweets?: Tweet[] }) {
 
     tweets.forEach((item) => {
       const matches = item.text.match(hashTagRegex);
-      if (!matches) return;
+      if (!matches || !matches.length) return;
 
       matches
-        .map((match) => match.replace("#", "").trim())
+        ?.map((match) => match.replace("#", "").trim())
         .forEach((match) => {
           if (hashTagsMap.has(match)) {
             const value = hashTagsMap.get(match);

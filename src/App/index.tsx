@@ -23,7 +23,7 @@ function App() {
       `${tweetsEndpointURL}?${params.toString()}`
     );
 
-    data = data.map((item) => ({
+    data = data?.map((item) => ({
       ...item,
       createdAt: `${item.createdAt}Z`,
     }));
