@@ -5,4 +5,8 @@ module.exports = defineConfig({
     baseUrl: "http://localhost:3000",
   },
   projectId: "mpmv21",
+  retries: {
+    runMode: 2,
+    openMode: 0,
+  },
 });
