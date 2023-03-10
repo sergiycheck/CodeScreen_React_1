@@ -27,6 +27,11 @@ jobs:
       REACT_APP_TOKEN: 8c5996d5-fb89-46c9-8821-7063cfbc18b1
       REACT_APP_WEPAPI: https://app.codescreen.com/api/
 
+    strategy:
+      fail-fast: false
+      matrix:
+        containers: [1, 2]
+
     steps:
       - name: Checkout
         uses: actions/checkout@v3
