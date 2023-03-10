@@ -67,8 +67,7 @@ function App() {
         </button>
       </form>
 
-      <Tweets />
-      {JSON.stringify(tweets)}
+      <Tweets tweets={tweets ? Object.values(tweets) : []} />
     </div>
   );
 }

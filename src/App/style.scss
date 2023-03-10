@@ -9,12 +9,14 @@
   height: 112px;
   width: 460px;
   color: #7d7da7;
+
+  padding-top: 132px;
+  padding-bottom: 44px;
+
   font-size: 48px;
   font-weight: bold;
   letter-spacing: 0;
   line-height: 56px;
-  padding-top: 132px;
-  padding-bottom: 44px;
 }
 
 .username-input-box {
@@ -34,9 +36,11 @@
   padding: 0.5rem;
   padding-left: 24px;
   color: #87878a;
+
   font-size: 16px;
   letter-spacing: 0;
   line-height: 56px;
+
   position: relative;
   bottom: 3px;
 }
@@ -58,9 +62,11 @@
   cursor: pointer;
 
   color: #ffffff;
+
   font-size: 14px;
   font-weight: 400;
   letter-spacing: 0.88px;
   line-height: 56px;
+
   text-align: center;
 }
