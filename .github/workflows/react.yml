@@ -23,6 +23,8 @@ jobs:
 
   e2e:
     runs-on: ubuntu-latest
+    container: cypress/browsers:node12.18.3-chrome87-ff82
+
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -34,18 +36,11 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Check Cypress tests exist
-        id: check_cypress_tests
-        uses: andstor/file-existence-action@v1
-        with:
-          files: "cypress/e2e/"
-
       - name: Install and run Cypress tests
         uses: cypress-io/github-action@v5
-        if: steps.check_cypress_tests.outputs.files_exists == 'true'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
         with:
           build: pnpm run build
           start: serve -s build
           wait-on: "http://localhost:3000"
+          browser: chrome
