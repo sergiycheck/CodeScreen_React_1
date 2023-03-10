@@ -53,8 +53,6 @@ export default function Tweets({ tweets }: { tweets?: Tweet[] }) {
       }
     }
 
-    console.log(hashTagsMap);
-
     return mostPopularHastTag;
   }, []);
 
@@ -111,17 +109,64 @@ export default function Tweets({ tweets }: { tweets?: Tweet[] }) {
    * If there are no tweets for the given user, this method should return "N/A".
    */
   const getLongestTweetIdPrefix = React.useCallback((tweets: Tweet[]) => {
-    //TODO Implement
+    if (!tweets.length) return "N/A";
+
+    let longetsTweet = tweets[0];
+
+    if (tweets.length === 1) return longetsTweet.id.substring(0, 6);
+
+    for (let i = 1; i < tweets.length; i++) {
+      if (tweets[i].text.length > longetsTweet.text.length) {
+        longetsTweet = tweets[i];
+      }
+    }
+
+    return longetsTweet.id.substring(0, 6);
   }, []);
 
   /**
    * Retrieves the most number of days between tweets by the given user.
-   * This should always be rounded down to the complete number of days, i.e. if the time is 12 days & 3 hours, this
-   * method should return 12.
+   * This should always be rounded down to the complete number of days, i.e.
+   * if the time is 12 days & 3 hours, this method should return 12.
    * If there are no tweets for the given user, this method should return 0.
    */
   const getMostDaysBetweenTweets = React.useCallback((tweets: Tweet[]) => {
-    //TODO Implement
+    if (tweets.length < 2) return 0;
+
+    const daysDiff = (d1: Date, d2: Date) => {
+      const milliscondsPerDay = 1000 * 60 * 60 * 24;
+
+      const utc1 = Date.UTC(d1.getFullYear(), d1.getMonth(), d1.getDate());
+      const utc2 = Date.UTC(d2.getFullYear(), d2.getMonth(), d2.getDate());
+
+      return Math.floor((utc2 - utc1) / milliscondsPerDay);
+    };
+
+    let maxMostDays = 0;
+
+    const tweetsSorted = tweets.sort((t1, t2) => {
+      return (
+        new Date(t1.createdAt).getTime() - new Date(t2.createdAt).getTime()
+      );
+    });
+
+    for (let i = 0; i < tweetsSorted.length - 1; i++) {
+      const tweetOne = tweetsSorted[i];
+      const createAtIso1 = tweetOne.createdAt;
+      const dateOne = new Date(createAtIso1);
+
+      const tweetTwo = tweetsSorted[i + 1];
+      const createdAtIso2 = tweetTwo.createdAt;
+      const dateTwo = new Date(createdAtIso2);
+
+      const diffBetweetTweets = daysDiff(dateOne, dateTwo);
+
+      if (diffBetweetTweets > maxMostDays) {
+        maxMostDays = diffBetweetTweets;
+      }
+    }
+
+    return maxMostDays;
   }, []);
 
   React.useEffect(() => {
@@ -132,9 +177,11 @@ export default function Tweets({ tweets }: { tweets?: Tweet[] }) {
       const maxTweets = getMostTweetsInOneDay(tweets);
       setMostTweets(() => maxTweets);
 
-      getLongestTweetIdPrefix(tweets);
+      const longestTweetId = getLongestTweetIdPrefix(tweets);
+      setLongetTweet(() => longestTweetId);
 
-      getMostDaysBetweenTweets(tweets);
+      const mostDaysBetweenTweets = getMostDaysBetweenTweets(tweets);
+      setMostDays(() => mostDaysBetweenTweets);
     }
 
     return () => {
@@ -153,18 +200,24 @@ export default function Tweets({ tweets }: { tweets?: Tweet[] }) {
 
   const statNames = React.useMemo(() => {
     return [
-      { title: "Most popular hashtag", data: hashTag },
-      { title: "Most Tweets in one day", data: mostTweets },
-      { title: "Longest Tweet ID", data: longestTweet },
-      { title: "Most days between Tweets", data: mostDays },
+      {
+        title: "Most popular hashtag",
+        id: "most-popular-hashtag",
+        data: hashTag,
+      },
+      { title: "Most Tweets in one day", id: "most-tweets", data: mostTweets },
+      { title: "Longest Tweet ID", id: "longest-tweet-id", data: longestTweet },
+      { title: "Most days between Tweets", id: "most-days", data: mostDays },
     ];
   }, [hashTag, mostTweets, longestTweet, mostDays]);
 
-  const renderedTweetStats = statNames.map((item, index) => {
+  const renderedTweetStats = statNames.map((item) => {
     return (
-      <div className="stats-box" key={index}>
+      <div className="stats-box" key={item.id}>
         <p className="stats-box-heading">{item.title}</p>
-        <p className="stats-box-info">{item.data}</p>
+        <p className="stats-box-info" id={item.id}>
+          {item.data}
+        </p>
       </div>
     );
   });
