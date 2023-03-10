@@ -18,7 +18,7 @@ jobs:
       run: pnpm install
       
     - name: Run Jest tests
-      run: pnpm run test -- --passWithNoTests
+      run: pnpm test -- --passWithNoTests
       env:
         CI: false
 
@@ -47,6 +47,6 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        build: pnpm run build --if-present
+        build: pnpm run build
         start: pnpm start
         wait-on: 'http://localhost:3000'
