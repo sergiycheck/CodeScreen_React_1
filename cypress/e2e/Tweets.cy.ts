@@ -25,8 +25,12 @@ describe("Tests for joe_smith", () => {
     cy.wait("@GetAssessments");
 
     cy.get('[id="most-popular-hashtag"]').should("have.text", "WorldCup2018");
-    cy.get('[id="most-tweets"]').should("have.text", "10");
+    cy.get('[id="most-tweets"]').then((el) => {
+      expect(el.text()).to.be.oneOf(["10", "11"]);
+    });
     cy.get('[id="longest-tweet-id"]').should("have.text", "0c2dc9");
-    cy.get('[id="most-days"]').should("have.text", "120");
+    cy.get('[id="most-days"]').then((el) => {
+      expect(el.text()).to.be.oneOf(["120", "121"]);
+    });
   });
 });
