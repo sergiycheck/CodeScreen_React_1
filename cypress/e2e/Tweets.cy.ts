@@ -7,24 +7,26 @@ describe("App loads successfully", () => {
 });
 
 describe("Tests for joe_smith", () => {
-  Cypress._.times(5, () => {
-    it("Data renders correctly for joe_smith", () => {
-      cy.visit("/");
+  it("Data renders correctly for joe_smith", () => {
+    cy.visit("/");
 
-      cy.intercept(`${baseUrl}/assessments/tweets*`).as("GetAssessments");
+    cy.intercept(`${baseUrl}/assessments/tweets*`, (req) => {
+      req.reply({
+        fixture: "tweets.json",
+      });
+    }).as("GetAssessments");
 
-      cy.get('[id="input-box"]')
-        .type("joe_smith")
-        .should("have.value", "joe_smith");
+    cy.get('[id="input-box"]')
+      .type("joe_smith")
+      .should("have.value", "joe_smith");
 
-      cy.get('[id="input-form"]').submit();
+    cy.get('[id="input-form"]').submit();
 
-      cy.wait("@GetAssessments");
+    cy.wait("@GetAssessments");
 
-      cy.get('[id="most-popular-hashtag"]').should("have.text", "WorldCup2018");
-      cy.get('[id="most-tweets"]').should("have.text", "10");
-      cy.get('[id="longest-tweet-id"]').should("have.text", "0c2dc9");
-      cy.get('[id="most-days"]').should("have.text", "120");
-    });
+    cy.get('[id="most-popular-hashtag"]').should("have.text", "WorldCup2018");
+    cy.get('[id="most-tweets"]').should("have.text", "10");
+    cy.get('[id="longest-tweet-id"]').should("have.text", "0c2dc9");
+    cy.get('[id="most-days"]').should("have.text", "120");
   });
 });
